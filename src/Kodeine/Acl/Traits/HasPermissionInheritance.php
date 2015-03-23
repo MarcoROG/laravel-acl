@@ -12,6 +12,24 @@ trait HasPermissionInheritance
     |
     */
 
+    /**
+     * @return array
+     */
+    public function getPermissionsRaw()
+    {
+        $rights = [];
+        foreach ($this->permissions as $row) {
+            $rights[] = [
+                'id'         => $row->id,
+                'inherit_id' => $row->inherit_id,
+                'name'       => $row->name,
+                'slug'       => $row->slug,
+            ];
+        }
+
+        return $rights;
+    }
+
     public function getPermissionsInherited()
     {
         $rights = [];
